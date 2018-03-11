@@ -222,7 +222,7 @@ e.style
 
 <style  type="text/css" >
 </style>  
-<table id="T_39a4e0cc_2473_11e8_bd27_b0359fc79ce0" > 
+<table id="T_df4fc030_2582_11e8_9de9_b0359fc79ce0" > 
 <thead>    <tr> 
         <th class="blank level0" ></th> 
         <th class="col_heading level0 col0" >Number of Unique Items</th> 
@@ -231,11 +231,11 @@ e.style
         <th class="col_heading level0 col3" >Total Revenue</th> 
     </tr></thead> 
 <tbody>    <tr> 
-        <th id="T_39a4e0cc_2473_11e8_bd27_b0359fc79ce0level0_row0" class="row_heading level0 row0" >0</th> 
-        <td id="T_39a4e0cc_2473_11e8_bd27_b0359fc79ce0row0_col0" class="data row0 col0" >183</td> 
-        <td id="T_39a4e0cc_2473_11e8_bd27_b0359fc79ce0row0_col1" class="data row0 col1" >$2.93</td> 
-        <td id="T_39a4e0cc_2473_11e8_bd27_b0359fc79ce0row0_col2" class="data row0 col2" >780</td> 
-        <td id="T_39a4e0cc_2473_11e8_bd27_b0359fc79ce0row0_col3" class="data row0 col3" >$2,286.33</td> 
+        <th id="T_df4fc030_2582_11e8_9de9_b0359fc79ce0level0_row0" class="row_heading level0 row0" >0</th> 
+        <td id="T_df4fc030_2582_11e8_9de9_b0359fc79ce0row0_col0" class="data row0 col0" >183</td> 
+        <td id="T_df4fc030_2582_11e8_9de9_b0359fc79ce0row0_col1" class="data row0 col1" >$2.93</td> 
+        <td id="T_df4fc030_2582_11e8_9de9_b0359fc79ce0row0_col2" class="data row0 col2" >780</td> 
+        <td id="T_df4fc030_2582_11e8_9de9_b0359fc79ce0row0_col3" class="data row0 col3" >$2,286.33</td> 
     </tr></tbody> 
 </table> 
 
@@ -251,6 +251,7 @@ for i in range(len(dataframe['SN'])):
         genders.append(dataframe['Gender'][i])
         players.append(dataframe['SN'][i])
 NumMen=genders.count('Male')
+
 NumMen
 ```
 
@@ -626,9 +627,9 @@ older=[]
 for i in range(len(dataframe)):
     if dataframe['Age'][i]<10:
         kids.append(i)
-    elif dataframe['Age'][i]<14:
+    elif dataframe['Age'][i]<=14:
         tweens.append(i)
-    elif dataframe['Age'][i]<19:
+    elif dataframe['Age'][i]<=19:
         teens.append(i)
     else:
         older.append(i)
@@ -643,9 +644,6 @@ NumTween=len(tweens)
 NumTeen=len(teens)
 NumOld=len(older)
 ```
-
-    28 29 117 606
-    
 
 
 ```python
@@ -666,7 +664,7 @@ print(kidsum,tweensum,teensum,oldsum)
     
 ```
 
-    83.46 82.65 333.62 1786.6
+    83.46 96.95 386.42 1719.5
     
 
 
@@ -679,7 +677,7 @@ oldavg=oldsum/NumOld
 print(kidavg,tweenavg,teenavg,oldavg)
 ```
 
-    2.98071428571 2.85 2.85145299145 2.94818481848
+    2.98071428571 2.77 2.90541353383 2.94434931507
     
 
 
@@ -692,7 +690,7 @@ normold=NumOld/NumPurchase
 print(normkid,normtween,normteen,normold)
 ```
 
-    0.035897435897435895 0.03717948717948718 0.15 0.7769230769230769
+    0.035897435897435895 0.04487179487179487 0.17051282051282052 0.7487179487179487
     
 
 
@@ -745,24 +743,24 @@ e
     </tr>
     <tr>
       <th>10-14</th>
-      <td>29</td>
-      <td>$2.85</td>
-      <td>$82.65</td>
-      <td>0.037179</td>
+      <td>35</td>
+      <td>$2.77</td>
+      <td>$96.95</td>
+      <td>0.044872</td>
     </tr>
     <tr>
       <th>15-19</th>
-      <td>117</td>
-      <td>$2.85</td>
-      <td>$333.62</td>
-      <td>0.150000</td>
+      <td>133</td>
+      <td>$2.91</td>
+      <td>$386.42</td>
+      <td>0.170513</td>
     </tr>
     <tr>
       <th>20+</th>
-      <td>606</td>
-      <td>$2.95</td>
-      <td>$1786.60</td>
-      <td>0.776923</td>
+      <td>584</td>
+      <td>$2.94</td>
+      <td>$1719.50</td>
+      <td>0.748718</td>
     </tr>
   </tbody>
 </table>
@@ -797,35 +795,14 @@ for i in range(len(dataframe)):
         fourthcount+=1
     elif dataframe['SN'][i]==names[4]:
         fifthcount+=1
-print(firstcount,secondcount,thirdcount,fourthcount,fifthcount)
-o=[firstcount,secondcount,thirdcount,fourthcount,fifthcount]
-o
 ```
-
-    5 4 4 3 3
-    
-
-
-
-
-    [5, 4, 4, 3, 3]
-
-
 
 
 ```python
 #Total Purchase Price
 totals=spenders.Price
 totals=[float(spenders.Price[i]) for i in range(5)]
-totals
 ```
-
-
-
-
-    [17.06, 13.56, 12.739999999999998, 12.73, 11.58]
-
-
 
 
 ```python
@@ -835,9 +812,6 @@ avgsecond=totals[1]/secondcount
 avgthird=totals[2]/thirdcount
 avgfourth=totals[3]/fourthcount
 avgfifth=totals[4]/fifthcount
-
-
-
 ```
 
 
@@ -941,15 +915,7 @@ for i in range(len(dataframe['Item ID'])):
     if i not in itemprice.keys():
         itemprice[dataframe['Item ID'][i]]=float(dataframe['Price'][i])
 itemprices=[itemprice[i] for i in ids]
-itemprices
 ```
-
-
-
-
-    [2.35, 2.23, 1.49, 2.07, 4.14]
-
-
 
 
 ```python
