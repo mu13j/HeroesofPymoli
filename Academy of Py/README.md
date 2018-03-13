@@ -96,7 +96,7 @@ overall=(mathpass+readpass)/2
 
 ```python
 #District Summary
-d={'Total Schools':[numsch],'Total Students':[numstu], 'Total Budget':["${:.2f}".format(totalbudget)],'Average Math Score':[avgmath],'Average Reading Score':[avgread],'% Passing Math':[mathpass],'% Passing Reading':[readpass],'Overall Passing Rate':[overall]}
+d={'Total Schools':[numsch],'Total Students':[numstu], 'Total Budget':["${:.2f}".format(totalbudget)],'Average Math Score':[avgmath],'Average Reading Score':[avgread],'% Passing Math':[mathpass*100],'% Passing Reading':[readpass*100],'Overall Passing Rate':[overall*100]}
 e=pd.DataFrame(data=d)
 cols=['Total Schools','Total Students', 'Total Budget','Average Math Score','Average Reading Score','% Passing Math','% Passing Reading','Overall Passing Rate']
 e=e[cols]
@@ -142,9 +142,9 @@ e
       <td>$24649428.00</td>
       <td>78.985371</td>
       <td>81.87784</td>
-      <td>0.723921</td>
-      <td>0.829717</td>
-      <td>0.776819</td>
+      <td>72.392137</td>
+      <td>82.971662</td>
+      <td>77.681899</td>
     </tr>
   </tbody>
 </table>
