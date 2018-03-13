@@ -3,9 +3,6 @@
 ```python
 import json
 import pandas as pd
-import numpy as np
-from pprint import pprint
-
 ```
 
 
@@ -155,7 +152,6 @@ for i in dataframe['Item ID']:
     if i not in UniqueItems:
         UniqueItems.append(i)
 NumUniqueItems=len(UniqueItems)
-NumUniqueItems
 ```
 
 
@@ -169,7 +165,6 @@ NumUniqueItems
 ```python
 #Average Purchase Price
 AvgPurchasePrice='${:,.2f}'.format(sum(dataframe['Price'])/len(dataframe))
-AvgPurchasePrice
 ```
 
 
@@ -183,7 +178,6 @@ AvgPurchasePrice
 ```python
 #Total Number of Purchases
 NumPurchase=len(dataframe)
-NumPurchase
 ```
 
 
@@ -197,7 +191,6 @@ NumPurchase
 ```python
 #Total Revenue
 Revenue='${:,.2f}'.format(sum(dataframe['Price']))
-Revenue
 ```
 
 
@@ -214,30 +207,47 @@ d={'Number of Unique Items':[NumUniqueItems],'Average Price':[AvgPurchasePrice],
 e=pd.DataFrame(d)
 cols=['Number of Unique Items','Average Price','Number of Purchases','Total Revenue']
 e=e[cols]
-e.style
+e
 ```
 
 
 
 
-<style  type="text/css" >
-</style>  
-<table id="T_df4fc030_2582_11e8_9de9_b0359fc79ce0" > 
-<thead>    <tr> 
-        <th class="blank level0" ></th> 
-        <th class="col_heading level0 col0" >Number of Unique Items</th> 
-        <th class="col_heading level0 col1" >Average Price</th> 
-        <th class="col_heading level0 col2" >Number of Purchases</th> 
-        <th class="col_heading level0 col3" >Total Revenue</th> 
-    </tr></thead> 
-<tbody>    <tr> 
-        <th id="T_df4fc030_2582_11e8_9de9_b0359fc79ce0level0_row0" class="row_heading level0 row0" >0</th> 
-        <td id="T_df4fc030_2582_11e8_9de9_b0359fc79ce0row0_col0" class="data row0 col0" >183</td> 
-        <td id="T_df4fc030_2582_11e8_9de9_b0359fc79ce0row0_col1" class="data row0 col1" >$2.93</td> 
-        <td id="T_df4fc030_2582_11e8_9de9_b0359fc79ce0row0_col2" class="data row0 col2" >780</td> 
-        <td id="T_df4fc030_2582_11e8_9de9_b0359fc79ce0row0_col3" class="data row0 col3" >$2,286.33</td> 
-    </tr></tbody> 
-</table> 
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Number of Unique Items</th>
+      <th>Average Price</th>
+      <th>Number of Purchases</th>
+      <th>Total Revenue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>183</td>
+      <td>$2.93</td>
+      <td>780</td>
+      <td>$2,286.33</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -251,30 +261,13 @@ for i in range(len(dataframe['SN'])):
         genders.append(dataframe['Gender'][i])
         players.append(dataframe['SN'][i])
 NumMen=genders.count('Male')
-
-NumMen
 ```
-
-
-
-
-    465
-
-
 
 
 ```python
 #Percentage of Men
 PercentMen=NumMen/TotalNumber
-PercentMen
 ```
-
-
-
-
-    0.8115183246073299
-
-
 
 
 ```python
@@ -283,11 +276,7 @@ NumFem=genders.count('Female')
 
 #Percentage of Female
 PercentFem=NumFem/TotalNumber
-print(NumFem,PercentFem)
 ```
-
-    100 0.17452006980802792
-    
 
 
 ```python
@@ -296,11 +285,7 @@ NumOther=TotalNumber-NumFem-NumMen
 
 #Percentage of Other
 PercentOther=NumOther/TotalNumber
-print(NumOther,PercentOther)
 ```
-
-    8 0.013961605584642234
-    
 
 
 ```python
@@ -372,22 +357,7 @@ for i in mix.keys():
         males.append(i)
     else:
         other.append(i)
-other
 ```
-
-
-
-
-    ['Assassa38',
-     'Frichistasta59',
-     'Tyaerith73',
-     'Aillycal84',
-     'Faralcil63',
-     'Eurisuru25',
-     'Aithelis62',
-     'Euna48']
-
-
 
 
 ```python
@@ -429,11 +399,7 @@ for i in otherpurchases:
 malesums='${:,.2f}'.format(malesum)
 femalesums='${:,.2f}'.format(femalesum)
 othersums='${:,.2f}'.format(othersum)
-print(malesum,femalesum,othersum)
 ```
-
-    1867.68 382.91 35.74
-    
 
 
 ```python
@@ -444,11 +410,7 @@ othavg=(othersum/NumOthPurch)
 maleavgs='${:,.2f}'.format(maleavg)
 femavgs='${:,.2f}'.format(femavg)
 othavgs='${:,.2f}'.format(othavg)
-print(maleavg,femavg,othavg)
 ```
-
-    2.95052132701 2.81551470588 3.24909090909
-    
 
 
 ```python
@@ -456,11 +418,7 @@ print(maleavg,femavg,othavg)
 normmale=NumMalePurch/NumPurchase
 normfem=NumFemPurch/NumPurchase
 normother=NumOthPurch/NumPurchase
-print(normmale,normfem,normother)
 ```
-
-    0.8115384615384615 0.17435897435897435 0.014102564102564103
-    
 
 
 ```python
@@ -660,12 +618,8 @@ for i in teens:
     teensum=teensum+dataframe.iloc[i]['Price']
 for i in older:
     oldsum=oldsum+dataframe.iloc[i]['Price']
-print(kidsum,tweensum,teensum,oldsum)
     
 ```
-
-    83.46 96.95 386.42 1719.5
-    
 
 
 ```python
@@ -674,11 +628,7 @@ kidavg=kidsum/NumKids
 tweenavg=tweensum/NumTween
 teenavg=teensum/NumTeen
 oldavg=oldsum/NumOld
-print(kidavg,tweenavg,teenavg,oldavg)
 ```
-
-    2.98071428571 2.77 2.90541353383 2.94434931507
-    
 
 
 ```python
@@ -687,11 +637,7 @@ normkid=NumKids/NumPurchase
 normtween=NumTween/NumPurchase
 normteen=NumTeen/NumPurchase
 normold=NumOld/NumPurchase
-print(normkid,normtween,normteen,normold)
 ```
-
-    0.035897435897435895 0.04487179487179487 0.17051282051282052 0.7487179487179487
-    
 
 
 ```python
@@ -1010,20 +956,16 @@ new=dataframe.groupby(['Item ID'])['Price'].sum()
 profitable=pd.DataFrame(new.nlargest(5,'first'))
 ids=[profitable.index[i] for i in range(5)]
 names=[itemsnameid[i] for i in ids]
-prices=[profitable.Price[i] for i in ids]
+totalvalue=[profitable.Price[i] for i in ids]
 count=[mostpopular.Age[i] for i in ids]
-totalvalue=[float(count[i]*prices[i]) for i in range(5)]
+prices=[float(totalvalue[i]/count[i]) for i in range(5)]
 prices
 ```
 
 
 
 
-    [37.259999999999998,
-     29.75,
-     29.699999999999999,
-     29.220000000000002,
-     28.879999999999999]
+    [4.14, 4.25, 4.95, 4.87, 3.61]
 
 
 
@@ -1075,36 +1017,36 @@ e.set_index(['Item ID','Item Name'])
       <th>34</th>
       <th>Retribution Axe</th>
       <td>9</td>
+      <td>$4.14</td>
       <td>$37.26</td>
-      <td>$335.34</td>
     </tr>
     <tr>
       <th>115</th>
       <th>Spectral Diamond Doomblade</th>
       <td>7</td>
+      <td>$4.25</td>
       <td>$29.75</td>
-      <td>$208.25</td>
     </tr>
     <tr>
       <th>32</th>
       <th>Orenmir</th>
       <td>6</td>
+      <td>$4.95</td>
       <td>$29.70</td>
-      <td>$178.20</td>
     </tr>
     <tr>
       <th>103</th>
       <th>Singed Scalpel</th>
       <td>6</td>
+      <td>$4.87</td>
       <td>$29.22</td>
-      <td>$175.32</td>
     </tr>
     <tr>
       <th>107</th>
       <th>Splitter, Foe Of Subtlety</th>
       <td>8</td>
+      <td>$3.61</td>
       <td>$28.88</td>
-      <td>$231.04</td>
     </tr>
   </tbody>
 </table>
