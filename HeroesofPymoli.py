@@ -1,27 +1,29 @@
 
 # coding: utf-8
 
-# In[4]:
+# In[9]:
 
 
 import json
 import pandas as pd
+import numpy as np
+from pprint import pprint
 
 
-# In[5]:
+# In[10]:
 
 
 data=json.load(open('purchase_data.json'))
 
 
-# In[6]:
+# In[11]:
 
 
 dataframe=pd.DataFrame(data)
 dataframe.head()
 
 
-# In[7]:
+# In[12]:
 
 
 #Player Count
@@ -34,7 +36,7 @@ d={'Total Players':[TotalNumber]}
 pd.DataFrame(data=d)
 
 
-# In[8]:
+# In[13]:
 
 
 #Unique Items
@@ -43,27 +45,31 @@ for i in dataframe['Item ID']:
     if i not in UniqueItems:
         UniqueItems.append(i)
 NumUniqueItems=len(UniqueItems)
+NumUniqueItems
 
 
-# In[9]:
+# In[14]:
 
 
 #Average Purchase Price
 AvgPurchasePrice='${:,.2f}'.format(sum(dataframe['Price'])/len(dataframe))
+AvgPurchasePrice
 
 
-# In[10]:
+# In[15]:
 
 
 #Total Number of Purchases
 NumPurchase=len(dataframe)
+NumPurchase
 
 
-# In[11]:
+# In[16]:
 
 
 #Total Revenue
 Revenue='${:,.2f}'.format(sum(dataframe['Price']))
+Revenue
 
 
 # In[17]:
@@ -74,7 +80,7 @@ d={'Number of Unique Items':[NumUniqueItems],'Average Price':[AvgPurchasePrice],
 e=pd.DataFrame(d)
 cols=['Number of Unique Items','Average Price','Number of Purchases','Total Revenue']
 e=e[cols]
-e
+e.style
 
 
 # In[18]:
@@ -89,12 +95,15 @@ for i in range(len(dataframe['SN'])):
         players.append(dataframe['SN'][i])
 NumMen=genders.count('Male')
 
+NumMen
+
 
 # In[19]:
 
 
 #Percentage of Men
 PercentMen=NumMen/TotalNumber
+PercentMen
 
 
 # In[20]:
@@ -105,6 +114,7 @@ NumFem=genders.count('Female')
 
 #Percentage of Female
 PercentFem=NumFem/TotalNumber
+print(NumFem,PercentFem)
 
 
 # In[21]:
@@ -115,6 +125,7 @@ NumOther=TotalNumber-NumFem-NumMen
 
 #Percentage of Other
 PercentOther=NumOther/TotalNumber
+print(NumOther,PercentOther)
 
 
 # In[22]:
@@ -127,7 +138,7 @@ e=e.rename({0:'Male',1:'Female',2:'Other / Non-Disclosed'})
 e
 
 
-# In[22]:
+# In[23]:
 
 
 mix=dict(zip(players,genders))
@@ -142,9 +153,10 @@ for i in mix.keys():
         males.append(i)
     else:
         other.append(i)
+other
 
 
-# In[23]:
+# In[24]:
 
 
 #Index Counts of Purchases For Each Gender
@@ -160,7 +172,7 @@ for i in range(len(dataframe)):
         otherpurchases.append(i)
 
 
-# In[24]:
+# In[25]:
 
 
 #Purchase Counts For Each Gender
@@ -169,7 +181,7 @@ NumFemPurch=len(femalepurchases)
 NumOthPurch=len(otherpurchases)
 
 
-# In[25]:
+# In[26]:
 
 
 #Total Price of Purchases By Gender
@@ -185,9 +197,10 @@ for i in otherpurchases:
 malesums='${:,.2f}'.format(malesum)
 femalesums='${:,.2f}'.format(femalesum)
 othersums='${:,.2f}'.format(othersum)
+print(malesum,femalesum,othersum)
 
 
-# In[26]:
+# In[27]:
 
 
 #Average Price of Purchases By Gender
@@ -197,18 +210,20 @@ othavg=(othersum/NumOthPurch)
 maleavgs='${:,.2f}'.format(maleavg)
 femavgs='${:,.2f}'.format(femavg)
 othavgs='${:,.2f}'.format(othavg)
+print(maleavg,femavg,othavg)
 
 
-# In[30]:
+# In[28]:
 
 
 #Normalized Totals
 normmale=NumMalePurch/NumPurchase
 normfem=NumFemPurch/NumPurchase
 normother=NumOthPurch/NumPurchase
+print(normmale,normfem,normother)
 
 
-# In[31]:
+# In[29]:
 
 
 #Puchasing Analysis (Gender)
@@ -220,7 +235,7 @@ e=e[cols]
 e
 
 
-# In[32]:
+# In[37]:
 
 
 #Age Demographics
@@ -251,7 +266,7 @@ e=e.rename({0:'<10',1:'10-14',2:'15-19',3:'20+'})
 e
 
 
-# In[33]:
+# In[38]:
 
 
 #Index Counts of Purchases For Each Age Group
@@ -270,7 +285,7 @@ for i in range(len(dataframe)):
         older.append(i)
 
 
-# In[34]:
+# In[39]:
 
 
 #Purchase Counts by Age
@@ -281,7 +296,7 @@ NumTeen=len(teens)
 NumOld=len(older)
 
 
-# In[35]:
+# In[40]:
 
 
 #Total Purchase Value By Age
@@ -297,10 +312,11 @@ for i in teens:
     teensum=teensum+dataframe.iloc[i]['Price']
 for i in older:
     oldsum=oldsum+dataframe.iloc[i]['Price']
+print(kidsum,tweensum,teensum,oldsum)
     
 
 
-# In[36]:
+# In[41]:
 
 
 #Average Purchase Value By Age
@@ -308,9 +324,10 @@ kidavg=kidsum/NumKids
 tweenavg=tweensum/NumTween
 teenavg=teensum/NumTeen
 oldavg=oldsum/NumOld
+print(kidavg,tweenavg,teenavg,oldavg)
 
 
-# In[37]:
+# In[42]:
 
 
 #Normalized Total
@@ -318,9 +335,10 @@ normkid=NumKids/NumPurchase
 normtween=NumTween/NumPurchase
 normteen=NumTeen/NumPurchase
 normold=NumOld/NumPurchase
+print(normkid,normtween,normteen,normold)
 
 
-# In[38]:
+# In[43]:
 
 
 #Purchasing Analysis (Age)
@@ -334,7 +352,7 @@ e=e.rename({0:'<10',1:'10-14',2:'15-19',3:'20+'})
 e
 
 
-# In[39]:
+# In[44]:
 
 
 #Highest 5 Spenders SN
@@ -343,7 +361,7 @@ spenders=pd.DataFrame(new.nlargest(5,'first'))
 names=[spenders.index[i] for i in range(5)]
 
 
-# In[44]:
+# In[45]:
 
 
 #Purchase Count of 5 Spenders
@@ -365,7 +383,7 @@ for i in range(len(dataframe)):
         fifthcount+=1
 
 
-# In[45]:
+# In[46]:
 
 
 #Total Purchase Price
@@ -373,7 +391,7 @@ totals=spenders.Price
 totals=[float(spenders.Price[i]) for i in range(5)]
 
 
-# In[46]:
+# In[47]:
 
 
 #Average Purchase Price
@@ -384,7 +402,7 @@ avgfourth=totals[3]/fourthcount
 avgfifth=totals[4]/fifthcount
 
 
-# In[47]:
+# In[48]:
 
 
 #Top Spenders
@@ -396,7 +414,7 @@ e=e.rename({0:'SN',1:names[0],2:names[1],3:names[2],4:names[3],5:names[4]})
 e
 
 
-# In[48]:
+# In[49]:
 
 
 #Most Popular 5 Items
@@ -406,7 +424,7 @@ ids=[largest.index[i] for i in range(5)]
 count=[largest.Age[i] for i in ids]
 
 
-# In[49]:
+# In[50]:
 
 
 #Most Popular 5 Items Prices and Names
@@ -421,7 +439,7 @@ for i in range(len(dataframe['Item ID'])):
 itemprices=[itemprice[i] for i in ids]
 
 
-# In[50]:
+# In[51]:
 
 
 #Most Popular Items
@@ -432,7 +450,7 @@ e=e[cols]
 e.set_index(['Item ID','Item Name'])
 
 
-# In[54]:
+# In[52]:
 
 
 #Most Profitable Items
@@ -440,13 +458,13 @@ new=dataframe.groupby(['Item ID'])['Price'].sum()
 profitable=pd.DataFrame(new.nlargest(5,'first'))
 ids=[profitable.index[i] for i in range(5)]
 names=[itemsnameid[i] for i in ids]
-totalvalue=[profitable.Price[i] for i in ids]
+prices=[profitable.Price[i] for i in ids]
 count=[mostpopular.Age[i] for i in ids]
-prices=[float(totalvalue[i]/count[i]) for i in range(5)]
+totalvalue=[float(count[i]*prices[i]) for i in range(5)]
 prices
 
 
-# In[55]:
+# In[53]:
 
 
 d={'Item ID':ids,'Item Name':names,'Purchase Count':count,'Item Price':["${0:.2f}".format(prices[i]) for i in range(5)],'Total Purchase Value':["${0:.2f}".format(totalvalue[i]) for i in range(5)]}
