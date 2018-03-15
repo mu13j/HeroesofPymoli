@@ -1,4 +1,10 @@
 
+# Heroes Of Pymoli Data Analysis
+* The main demographic of the game is older players (in the 20+ category). The popularity drops off drastically as the age of the player gets younger.
+* Purchases do not seem to be correlated with the players’ ages. The normalized totals of the purchases matched the age distribution very closely.
+* The game is much more popular with men than with women.
+
+
 
 ```python
 import json
@@ -155,24 +161,10 @@ NumUniqueItems=len(UniqueItems)
 ```
 
 
-
-
-    183
-
-
-
-
 ```python
 #Average Purchase Price
 AvgPurchasePrice='${:,.2f}'.format(sum(dataframe['Price'])/len(dataframe))
 ```
-
-
-
-
-    '$2.93'
-
-
 
 
 ```python
@@ -181,24 +173,10 @@ NumPurchase=len(dataframe)
 ```
 
 
-
-
-    780
-
-
-
-
 ```python
 #Total Revenue
 Revenue='${:,.2f}'.format(sum(dataframe['Price']))
 ```
-
-
-
-
-    '$2,286.33'
-
-
 
 
 ```python
@@ -415,9 +393,12 @@ othavgs='${:,.2f}'.format(othavg)
 
 ```python
 #Normalized Totals
-normmale=NumMalePurch/NumPurchase
-normfem=NumFemPurch/NumPurchase
-normother=NumOthPurch/NumPurchase
+normmale=malesum/NumMen
+normfem=femalesum/NumFem
+normother=othersum/NumOther
+normmale='${:,.2f}'.format(normmale)
+normfem='${:,.2f}'.format(normfem)
+normother='${:,.2f}'.format(normother)
 ```
 
 
@@ -471,21 +452,21 @@ e
       <td>136</td>
       <td>$2.82</td>
       <td>$382.91</td>
-      <td>0.174359</td>
+      <td>$3.83</td>
     </tr>
     <tr>
       <th>Male</th>
       <td>633</td>
       <td>$2.95</td>
       <td>$1,867.68</td>
-      <td>0.811538</td>
+      <td>$4.02</td>
     </tr>
     <tr>
       <th>Other</th>
       <td>11</td>
       <td>$3.25</td>
       <td>$35.74</td>
-      <td>0.0141026</td>
+      <td>$4.47</td>
     </tr>
   </tbody>
 </table>
@@ -633,10 +614,14 @@ oldavg=oldsum/NumOld
 
 ```python
 #Normalized Total
-normkid=NumKids/NumPurchase
-normtween=NumTween/NumPurchase
-normteen=NumTeen/NumPurchase
-normold=NumOld/NumPurchase
+normkid=kidsum/NumKids
+normtween=tweensum/NumTween
+normteen=teensum/NumTeen
+normold=oldsum/NumOld
+normkid='${:,.2f}'.format(normkid)
+normtween='${:,.2f}'.format(normtween)
+normteen='${:,.2f}'.format(normteen)
+normold='${:,.2f}'.format(normold)
 ```
 
 
@@ -685,28 +670,28 @@ e
       <td>28</td>
       <td>$2.98</td>
       <td>$83.46</td>
-      <td>0.035897</td>
+      <td>$2.98</td>
     </tr>
     <tr>
       <th>10-14</th>
       <td>35</td>
       <td>$2.77</td>
       <td>$96.95</td>
-      <td>0.044872</td>
+      <td>$2.77</td>
     </tr>
     <tr>
       <th>15-19</th>
       <td>133</td>
       <td>$2.91</td>
       <td>$386.42</td>
-      <td>0.170513</td>
+      <td>$2.91</td>
     </tr>
     <tr>
       <th>20+</th>
       <td>584</td>
       <td>$2.94</td>
       <td>$1719.50</td>
-      <td>0.748718</td>
+      <td>$2.94</td>
     </tr>
   </tbody>
 </table>

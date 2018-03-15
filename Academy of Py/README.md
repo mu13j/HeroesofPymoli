@@ -1,4 +1,10 @@
 
+# Academy of Py Observations
+* Smaller/medium size schools score much better in both math and reading. (Charter schools blow district schools out of the water)
+* Students’ reading scores are generally better than their math scores.
+* Age and score are not significantly correlated. 
+
+
 
 ```python
 import pandas as pd
@@ -72,7 +78,7 @@ avgread=sum(student['reading_score'])/len(student['reading_score'])
 # %Passing Math
 counter=0
 for i in student['math_score']:
-    if i>passingscore:
+    if i>=passingscore:
         counter+=1
 mathpass=counter/len(student['math_score']*100)
 ```
@@ -82,7 +88,7 @@ mathpass=counter/len(student['math_score']*100)
 # %Passing Reading
 counter=0
 for i in student['reading_score']:
-    if i>passingscore:
+    if i>=passingscore:
         counter+=1
 readpass=counter/len(student['reading_score']*100)
 ```
@@ -142,9 +148,9 @@ e
       <td>$24649428.00</td>
       <td>78.985371</td>
       <td>81.87784</td>
-      <td>72.392137</td>
-      <td>82.971662</td>
-      <td>77.681899</td>
+      <td>74.980853</td>
+      <td>85.805463</td>
+      <td>80.393158</td>
     </tr>
   </tbody>
 </table>
